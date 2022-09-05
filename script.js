@@ -13,19 +13,37 @@ function generateColor() {
 
 function defineCoresAleatorias() {
   const colors = document.querySelectorAll('.color');
+  const newColors = [];
+  newColors[0] = 'rgb(0)';
   for (let index = 1; index < colors.length; index += 1) {
     colors[index].style.backgroundColor = generateColor();
+    newColors[index] = colors[index].style.backgroundColor;
   }
-  const newColors = document.getElementById('color-palette');
-  localStorage.setItem('colorPalette', newColors.innerHTML);
+  localStorage.setItem('colorPalette', JSON.stringify(newColors));
 }
 
 button.addEventListener('click', defineCoresAleatorias);
+function savePalette() {
+  const colorPaletteLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
+  if (colorPaletteLocalStorage !== null) {
+    const colorPalette = document.getElementsByClassName('color');
+    for (let index = 0; index < colorPalette.length; index += 1) {
+      colorPalette[index].style.backgroundColor = colorPaletteLocalStorage[index];
+    }
+  }
+}
+
+function createDiv() {
+  const pixelBoard = document.getElementById('pixel-board');
+  const pixelBox = document.createElement('div');
+  pixelBox.className = 'pixel';
+  pixelBox.style.backgroundColor = 'white';
+  pixelBoard.appendChild(pixelBox);
+}
 
 window.onload = function () {
-  const colorPalette = document.getElementById('color-palette');
-  const colorPaletteLocalStorage = localStorage.getItem('colorPalette');
-  if (colorPaletteLocalStorage !== undefined) {
-    colorPalette.innerHTML = colorPaletteLocalStorage;
+  for (let index = 0; index < 25; index += 1) {
+    createDiv();
   }
+  savePalette();
 };
