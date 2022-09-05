@@ -16,3 +16,10 @@
 #colorFour {
   background-color: #ffdab9;
 }
+
+#pixel {
+  border: solid 1px black;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
