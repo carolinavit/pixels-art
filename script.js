@@ -41,6 +41,17 @@ function createDiv() {
   pixelBoard.appendChild(pixelBox);
 }
 
+function selecionarCor(e) {
+  const escolheCor = document.querySelectorAll('.color');
+  escolheCor.classList.remove('selected');
+  e.target.classList.add('selected');
+}
+
+const getColors = document.querySelectorAll('.color');
+for (let index = 0; index < getColors.length; index += 1) {
+  getColors[index].addEventListener('click', selecionarCor);
+}
+
 window.onload = function () {
   for (let index = 0; index < 25; index += 1) {
     createDiv();
