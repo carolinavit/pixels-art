@@ -14,7 +14,7 @@ function generateColor() {
 function defineCoresAleatorias() {
   const colors = document.querySelectorAll('.color');
   const newColors = [];
-  newColors[0] = 'rgb(0)';
+  newColors[0] = 'rgb(0,0,0)';
   for (let index = 1; index < colors.length; index += 1) {
     colors[index].style.backgroundColor = generateColor();
     newColors[index] = colors[index].style.backgroundColor;
@@ -32,6 +32,11 @@ function savePalette() {
     }
   }
 }
+function paintBox(e) {
+  const selected = document.getElementsByClassName('selected');
+  const colorSelected = selected[0].style.backgroundColor;
+  e.target.style.backgroundColor = colorSelected;
+}
 
 function createDiv() {
   const pixelBoard = document.getElementById('pixel-board');
@@ -39,11 +44,12 @@ function createDiv() {
   pixelBox.className = 'pixel';
   pixelBox.style.backgroundColor = 'white';
   pixelBoard.appendChild(pixelBox);
+  pixelBox.addEventListener('click', paintBox);
 }
 
 function selecionarCor(e) {
-  const escolheCor = document.querySelectorAll('.color');
-  escolheCor.classList.remove('selected');
+  const selected = document.getElementsByClassName('selected');
+  selected[0].classList.remove('selected');
   e.target.classList.add('selected');
 }
 
@@ -53,6 +59,11 @@ for (let index = 0; index < getColors.length; index += 1) {
 }
 
 window.onload = function () {
+  const colors = document.querySelectorAll('.color');
+  colors[0].style.backgroundColor = 'rgb(0,0,0)';
+  colors[1].style.backgroundColor = '#dc143c';
+  colors[2].style.backgroundColor = '#f08080';
+  colors[3].style.backgroundColor = '#ffdab9';
   for (let index = 0; index < 25; index += 1) {
     createDiv();
   }

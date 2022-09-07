@@ -4,19 +4,6 @@
   height: 50px;
   display: inline-block;
 }
-#colorOne {
-  background-color: black;
-}
-#colorTwo {
-  background-color: #dc143c;
-}
-#colorThree {
-  background-color: #f08080;
-}
-#colorFour {
-  background-color: #ffdab9;
-}
-
 .pixel {
   border: solid 1px black;
   width: 40px;
@@ -34,5 +21,4 @@
 
 #color-palette {
   height: auto;
-  border: solid 1px red;
 }
